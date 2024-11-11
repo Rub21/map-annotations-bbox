@@ -1,17 +1,21 @@
+// Import dependencies at the top
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+// Any other code, such as setup functions or initializations, should follow imports
+const resizeObserverError = (e) => {
+  if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+    e.stopImmediatePropagation();
+  }
+};
+window.addEventListener('error', resizeObserverError);
+
+// Render the application
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
