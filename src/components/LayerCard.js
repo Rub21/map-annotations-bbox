@@ -21,6 +21,10 @@ function LayerCard({ annotation, isVisible, onLoadLayer, bounds }) {
   // Get the manifest URL if it exists
   const manifestUrl = annotation.manifest || null;
 
+  const handleLayerLoad = () => {
+
+  }
+
   return (
     <div className="p-4 bg-white shadow-md rounded-lg border border-gray-300 cursor-pointer hover:bg-gray-50" onClick={onLoadLayer}>
       <div className="flex items-center space-x-2">

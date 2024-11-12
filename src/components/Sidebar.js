@@ -5,7 +5,7 @@ import { useMapContext } from './MapContext';
 import LayerCard from './LayerCard';
 
 function Sidebar({ annotations }) {
-  const { fetchAnnotationsByBBox, loadLayer } = useMapContext();
+  const { fetchAnnotationsByBBox, loadLayer, zoomToLayer } = useMapContext();
   const [visibleLayers, setVisibleLayers] = useState({});
   const [layerBounds, setLayerBounds] = useState({});
 
@@ -40,7 +40,7 @@ function Sidebar({ annotations }) {
       });
 
       const bounds = [[minLng, minLat], [maxLng, maxLat]];
-
+      zoomToLayer(bounds);
       setLayerBounds((prev) => ({ ...prev, [annotationId]: bounds }));
       loadLayer(annotationId, bounds, annotation.body);
 

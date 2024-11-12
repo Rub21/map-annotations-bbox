@@ -99,6 +99,14 @@ export const MapProvider = ({ children, setAnnotations }) => {
   };
 
   // Function to load a layer, zoom to its bounds, and add points
+  const zoomToLayer = (bounds) => {
+    const map = mapInstanceRef.current;
+    if (bounds) {
+      map.fitBounds(bounds, { padding: 20 });
+    }
+  };
+
+  // Function to load a layer, zoom to its bounds, and add points
   const loadLayer = (annotationId, bounds, featureCollection) => {
     const map = mapInstanceRef.current;
     const tmsUrl = getTmsUrl(annotationId);
@@ -165,7 +173,7 @@ export const MapProvider = ({ children, setAnnotations }) => {
   };
 
   return (
-    <MapContext.Provider value={{ fetchAnnotationsByBBox, loadLayer, getTmsUrl, mapContainerRef }}>
+    <MapContext.Provider value={{ fetchAnnotationsByBBox, loadLayer, getTmsUrl, mapContainerRef , zoomToLayer}}>
       {children}
       {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25">
